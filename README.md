@@ -1,3 +1,6 @@
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![Travis Build Status](https://travis-ci.org/mavogel/simple-city-service.svg?branch=master)](https://travis-ci.org/mavogel/simple-city-service)
+
 # A REST-based Simple city weather service
 The goal of your case is to develop a small REST based service to retrieve information about the weather in different cities. The service should be powered by node.js and utilize the data from openweathermap.org. The list of available cities can be found [here](http://bulk.openweathermap.org/sample/city.list.json.gz).
 
