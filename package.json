@@ -1,0 +1,57 @@
+{
+  "name": "simple-city-service",
+  "version": "1.0.0",
+  "description": "A simple city service providing additional weather data",
+  "main": "app.js",
+  "scripts": {
+    "pretest": "npm run compile",
+    "test": "mocha test/unit/**/*.spec.js",
+    "pree2e": "npm run compile",
+    "e2e": "mocha test/integration/**/*.spec.js",
+    "lint": "tslint \"app/**/*.ts\" --exclude=app/**/*.d.ts",
+    "cz": "git-cz",
+    "precommit": "npm run lint",
+    "prepush": "npm test && npm run e2e",
+    "compile": "tsc",
+    "start": "node app/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mavogel/simple-city-service.git"
+  },
+  "keywords": [
+    "typescript",
+    "restify"
+  ],
+  "author": "Manuel Vogel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mavogel/simple-city-service/issues"
+  },
+  "homepage": "https://github.com/mavogel/simple-city-service#readme",
+  "dependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.45",
+    "@types/restify": "^2.0.33",
+    "@types/sinon": "^1.16.31",
+    "@types/supertest": "^1.1.31",
+    "restify": "^4.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "husky": "^0.13.3",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "supertest": "^2.0.0",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
