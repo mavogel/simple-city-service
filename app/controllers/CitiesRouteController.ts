@@ -14,7 +14,7 @@ export default class CitiesRouteController {
         } else if (req.getQuery() && req.getQuery() !== '') {
             logger.info(`accessing cities route w query params: ${req.getQuery()}`);
             let queryParams: any = req.query;
-            if (queryParams.lat === '12.34' && queryParams.lng == '56.78') {
+            if (queryParams.lat === '12.34' && queryParams.lng === '56.78') {
                 res.json(200, [{ id: 23423, name: 'Mannheim' }, { id: 23231, name: 'Hamburg' }]);
             } else {
                 res.json(404, { code: 'NotFoundError', message: 'not found' });
