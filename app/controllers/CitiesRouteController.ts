@@ -1,6 +1,7 @@
 import * as restify from 'restify';
 import { logger } from '../services/logger';
-import { geo, Geoname, GeoNameFull } from '../services/geo';
+import { geo } from '../services/geo';
+import { Geoname, GeoNameFull } from '../models/geonames';
 
 export default class CitiesRouteController {
     public get(req: restify.Request, res: restify.Response, next: restify.Next) {
