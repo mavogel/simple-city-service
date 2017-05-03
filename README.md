@@ -4,6 +4,8 @@
 # A REST-based Simple city weather service
 The goal of your case is to develop a small REST based service to retrieve information about the weather in different cities. The service should be powered by node.js and utilize the data from openweathermap.org. The list of available cities can be found [here](http://bulk.openweathermap.org/sample/city.list.json.gz).
 
+The service is deployt as docker image with the name `mavogel/simple-city-service`.
+
 ## Personal benefit
 I'd like to learn `node` coming from the `Java` world and having experience with `Spring`, `Docker` and CI with `travis`. My goal is to use all the great tools and features I already know in the `node` world. I divided them into categories.
 
