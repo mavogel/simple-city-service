@@ -13,6 +13,7 @@
     "precommit": "npm run lint",
     "prepush": "npm test && npm run e2e",
     "compile": "tsc",
+    "prestart": "npm run compile",
     "start": "node app/app.js"
   },
   "repository": {

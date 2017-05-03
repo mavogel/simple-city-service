@@ -1,23 +1,10 @@
 import chai = require('chai');
 import { api as server } from '../../../app/app';
 import * as supertest from 'supertest';
-import { logger } from '../../../app/services/logger';
-import * as sinon from 'sinon';
 
+let expect = chai.expect;
 
 describe('cities route controller', () => {
-
-    let expect = chai.expect;
-    let sandbox = sinon.sandbox.create();
-    let logInfoStub: sinon.SinonStub;
-
-    beforeEach(() => {
-        logInfoStub = sandbox.stub(logger, 'info');
-    });
-
-    afterEach(() => {
-        sandbox.restore();
-    });
 
     it('should return 400 due to resource is not defined', (done) => {
         supertest(server)
@@ -29,7 +16,6 @@ describe('cities route controller', () => {
                 else {
                     expect(response.status).to.equal(400);
                     expect(response.body).to.deep.equal({ code: 'BadRequestError', message: 'lat/lng required' });
-                    expect(logInfoStub.callCount).to.equal(1);
                     done();
                 }
             });
@@ -45,7 +31,6 @@ describe('cities route controller', () => {
                 else {
                     expect(response.status).to.equal(200);
                     expect(response.body).to.deep.equal({ id: 1234, name: 'Mannheim', lat: 49.488331, lng: 8.46472 });
-                    expect(logInfoStub.callCount).to.equal(1);
                     done();
                 }
             });
@@ -61,7 +46,6 @@ describe('cities route controller', () => {
                 else {
                     expect(response.status).to.equal(404);
                     expect(response.body).to.deep.equal({ code: 'NotFoundError', message: 'not found' });
-                    expect(logInfoStub.callCount).to.equal(1);
                     done();
                 }
             });
@@ -77,7 +61,6 @@ describe('cities route controller', () => {
                 else {
                     expect(response.status).to.equal(200);
                     expect(response.body).to.deep.equal([{ id: 23423, name: 'Mannheim' }, { id: 23231, name: 'Hamburg' }]);
-                    expect(logInfoStub.callCount).to.equal(1);
                     done();
                 }
             });
@@ -93,7 +76,6 @@ describe('cities route controller', () => {
                 else {
                     expect(response.status).to.equal(404);
                     expect(response.body).to.deep.equal({ code: 'NotFoundError', message: 'not found' });
-                    expect(logInfoStub.callCount).to.equal(1);
                     done();
                 }
             });
