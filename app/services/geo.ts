@@ -4,6 +4,7 @@ import { Geoname, GeoNameFull } from '../models/geonames';
 
 /**
  * A geolocator service
+ * @deprecated
  */
 class Geo {
 

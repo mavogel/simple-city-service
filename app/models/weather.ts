@@ -28,12 +28,12 @@ export interface Clouds {
 }
 
 export interface Sys {
-    type: number;
-    id: number;
-    message: number;
+    type?: number;
+    id?: number;
+    message?: number;
     country: string;
-    sunrise: number;
-    sunset: number;
+    sunrise?: number;
+    sunset?: number;
 }
 
 export interface WeatherData {
@@ -64,4 +64,25 @@ export interface WeatherOutput {
     humidity: number;
     clouds_percent: number;
     wind_speed: number;
+}
+
+export interface List {
+    id: number;
+    name: string;
+    coord: Coord;
+    main: Main;
+    dt: number;
+    wind: Wind;
+    sys: Sys;
+    rain?: any;
+    snow?: any;
+    clouds: Clouds;
+    weather: Weather[];
+}
+
+export interface GeonamesWithWeather {
+    message: string;
+    cod: string;
+    count: number;
+    list: List[];
 }

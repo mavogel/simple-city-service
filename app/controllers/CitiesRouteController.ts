@@ -1,7 +1,7 @@
 import * as restify from 'restify';
 import { logger } from '../services/logger';
-import { geo } from '../services/geo';
-import { Geoname, GeoNameFull } from '../models/geonames';
+import { geoAndWeather } from '../services/geoAndWeather';
+import { WeatherData, GeonamesWithWeather } from '../models/weather';
 
 export default class CitiesRouteController {
     public get(req: restify.Request, res: restify.Response, next: restify.Next) {
@@ -9,10 +9,10 @@ export default class CitiesRouteController {
         // == path param
         if (cityId && cityId !== undefined) {
             logger.info(`accessing cities route for: ${cityId}`);
-            geo.getCity(cityId)
-                .then((geoname: GeoNameFull) => {
+            geoAndWeather.getCity(cityId)
+                .then((geoname: WeatherData) => {
                     if (!geoname.status) {
-                        res.json(200, { id: geoname.geonameId, name: geoname.name, lat: +geoname.lat, lng: +geoname.lng });
+                        res.json(200, { id: geoname.id, name: geoname.name, lat: +geoname.coord.lat, lng: +geoname.coord.lon });
                     } else {
                         res.json(404, { code: 'NotFoundError', message: 'not found' });
                     }
@@ -23,11 +23,11 @@ export default class CitiesRouteController {
         else if (req.getQuery() && req.getQuery() !== '') {
             logger.info(`accessing cities route w query params: ${req.getQuery()}`);
             let queryParams: any = req.query;
-            geo.getCities(queryParams.lat, queryParams.lng)
-                .then((geonames: Array<Geoname>) => {
-                    if (geonames.length !== 0) {
+            geoAndWeather.getCities(queryParams.lat, queryParams.lng)
+                .then((geonames: GeonamesWithWeather) => {
+                    if (geonames.list && geonames.list.length !== 0) {
                         let convertedGeonames: Array<{ id: number, name: string }> = [];
-                        geonames.forEach(gn => convertedGeonames.push({ id: gn.geonameId, name: gn.toponymName }));
+                        geonames.list.forEach(gn => convertedGeonames.push({ id: gn.id, name: gn.name }));
                         res.json(200, convertedGeonames);
                     } else {
                         res.json(404, { code: 'NotFoundError', message: 'not found' });

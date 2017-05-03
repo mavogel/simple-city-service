@@ -37,7 +37,7 @@ describe('cities route weather controller', () => {
         };
 
         supertest(server)
-            .get('/cities/1234/weather')
+            .get('/cities/2875376/weather')
             .end((err: any, response: supertest.Response) => {
                 if (err) {
                     done(err);

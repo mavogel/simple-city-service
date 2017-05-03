@@ -1,5 +1,5 @@
 import { Geoname, GeoNameFull } from '../app/models/geonames';
-import { WeatherData } from '../app/models/weather';
+import { WeatherData, GeonamesWithWeather } from '../app/models/weather';
 
 export let mockGeonames: Array<Geoname> =
     [
@@ -239,6 +239,99 @@ export let mockedGeoname: GeoNameFull =
         fcodeName: 'seat of a third-order administrative division',
         adminName1: 'Rheinland-Pfalz'
     }
+
+export let mockedGeonamesWithWeather: GeonamesWithWeather =
+    {
+        message: 'accurate',
+        cod: '200',
+        count: 10,
+        list: [
+            {
+                id: 2873891,
+                name: 'Mannheim',
+                coord: {
+                    lat: 49.4883,
+                    lon: 8.4647
+                },
+                main: {
+                    temp: 285.08,
+                    pressure: 1018,
+                    humidity: 62,
+                    temp_min: 284.15,
+                    temp_max: 287.15
+                },
+                dt: 1493821200,
+                wind: {
+                    speed: 4.6,
+                    deg: 40
+                },
+                sys: {
+                    country: ''
+                },
+                rain: null,
+                snow: null,
+                clouds: {
+                    all: 75
+                },
+                weather: [
+                    {
+                        id: 520,
+                        main: 'Rain',
+                        description: 'light intensity shower rain',
+                        icon: '09d'
+                    },
+                    {
+                        id: 701,
+                        main: 'Mist',
+                        description: 'mist',
+                        icon: '50d'
+                    }
+                ]
+            },
+            {
+                id: 2875376,
+                name: 'Ludwigshafen am Rhein',
+                coord: {
+                    lat: 49.4811,
+                    lon: 8.4353
+                },
+                main: {
+                    temp: 285.08,
+                    pressure: 1018,
+                    humidity: 62,
+                    temp_min: 284.15,
+                    temp_max: 287.15
+                },
+                dt: 1493821200,
+                wind: {
+                    speed: 4.6,
+                    deg: 40
+                },
+                sys: {
+                    country: ''
+                },
+                rain: null,
+                snow: null,
+                clouds: {
+                    all: 75
+                },
+                weather: [
+                    {
+                        id: 701,
+                        main: 'Mist',
+                        description: 'mist',
+                        icon: '50d'
+                    },
+                    {
+                        id: 520,
+                        main: 'Rain',
+                        description: 'light intensity shower rain',
+                        icon: '09d'
+                    }
+                ]
+            }
+        ]
+    };
 
 export let mockedWeatherData: WeatherData =
     {

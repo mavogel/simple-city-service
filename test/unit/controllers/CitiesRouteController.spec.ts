@@ -2,8 +2,8 @@ import chai = require('chai');
 import { api as server } from '../../../app/app';
 import * as supertest from 'supertest';
 import { logger } from '../../../app/services/logger';
-import { geo } from '../../../app/services/geo';
-import { mockedGeoname, mockGeonames } from '../../mocks';
+import { geoAndWeather } from '../../../app/services/geoAndWeather';
+import { mockedWeatherData, mockedGeonamesWithWeather } from '../../mocks';
 import * as sinon from 'sinon';
 
 
@@ -17,8 +17,8 @@ describe('cities route controller', () => {
 
     beforeEach(() => {
         logInfoStub = sandbox.stub(logger, 'info');
-        geoGetCitiesStub = sandbox.stub(geo, 'getCities');
-        geoGetCityStub = sandbox.stub(geo, 'getCity');
+        geoGetCitiesStub = sandbox.stub(geoAndWeather, 'getCities');
+        geoGetCityStub = sandbox.stub(geoAndWeather, 'getCity');
     });
 
     afterEach(() => {
@@ -41,9 +41,9 @@ describe('cities route controller', () => {
             });
     });
 
-    it('should return Ludwigshafen am Rhein for cityId', (done) => {
+    it('should return Mannheim for cityId', (done) => {
         geoGetCityStub.returns(new Promise((res, rej) => {
-            res(mockedGeoname);
+            res(mockedWeatherData);
         }));
 
         supertest(server)
@@ -54,7 +54,7 @@ describe('cities route controller', () => {
                 }
                 else {
                     expect(response.status).to.equal(200);
-                    expect(response.body).to.deep.equal({ id: 2875376, name: 'Ludwigshafen am Rhein', lat: 49.48121, lng: 8.44641 });
+                    expect(response.body).to.deep.equal({ id: 2873891, name: 'Mannheim', lat: 49.49, lng: 8.46 });
                     expect(logInfoStub.callCount).to.equal(1);
                     done();
                 }
@@ -83,7 +83,7 @@ describe('cities route controller', () => {
 
     it('should return 2 cities', (done) => {
         geoGetCitiesStub.returns(new Promise((res, rej) => {
-            res(mockGeonames);
+            res(mockedGeonamesWithWeather);
         }));
 
         supertest(server)
@@ -94,7 +94,7 @@ describe('cities route controller', () => {
                 }
                 else {
                     expect(response.status).to.equal(200);
-                    expect(response.body).to.deep.equal([{ id: 2875376, name: 'Ludwigshafen am Rhein' }, { id: 8521412, name: 'Lindenhof' }]);
+                    expect(response.body).to.deep.equal([{ id: 2873891, name: 'Mannheim' }, { id: 2875376, name: 'Ludwigshafen am Rhein' }]);
                     expect(logInfoStub.callCount).to.equal(1);
                     expect(geoGetCitiesStub.callCount).to.equal(1);
                     done();

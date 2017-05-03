@@ -21,16 +21,16 @@ describe('cities route controller', () => {
             });
     });
 
-    it('should return Ludwigshafen am Rhein for cityId', (done) => {
+    it('should return Mannheim for cityId', (done) => {
         supertest(server)
-            .get('/cities/2875376')
+            .get('/cities/2873891')
             .end((err: any, response: supertest.Response) => {
                 if (err) {
                     done(err);
                 }
                 else {
                     expect(response.status).to.equal(200);
-                    expect(response.body).to.deep.equal({ id: 2875376, name: 'Ludwigshafen am Rhein', lat: 49.48121, lng: 8.44641 });
+                    expect(response.body).to.deep.equal({ id: 2873891, name: 'Mannheim', lat: 49.49, lng: 8.46 });
                     done();
                 }
             });
@@ -38,7 +38,7 @@ describe('cities route controller', () => {
 
     it('should return city not found for cityId', (done) => {
         supertest(server)
-            .get('/cities/1')
+            .get('/cities/34343232566')
             .end((err: any, response: supertest.Response) => {
                 if (err) {
                     done(err);
@@ -69,7 +69,7 @@ describe('cities route controller', () => {
 
     it('should return city not found', (done) => {
         supertest(server)
-            .get('/cities?lat=0.42328&lng=8.46')
+            .get('/cities?lat=1.1&lng=1.1')
             .end((err: any, response: supertest.Response) => {
                 if (err) {
                     done(err);
