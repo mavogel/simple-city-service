@@ -5,7 +5,7 @@ import { logger } from '../../../app/services/logger';
 import * as sinon from 'sinon';
 
 
-describe('cities route controller', () => {
+describe('cities route weather controller', () => {
 
     let expect = chai.expect;
     let sandbox = sinon.sandbox.create();
