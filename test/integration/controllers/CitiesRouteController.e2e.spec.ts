@@ -8,7 +8,7 @@ describe('cities route controller', () => {
 
     it('should return 400 due to resource is not defined', (done) => {
         supertest(server)
-            .get('/cities/')
+            .get('/cities')
             .end((err: any, response: supertest.Response) => {
                 if (err) {
                     done(err);
