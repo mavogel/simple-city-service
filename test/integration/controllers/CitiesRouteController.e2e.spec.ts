@@ -51,16 +51,16 @@ describe('cities route controller', () => {
             });
     });
 
-    it('should return 2 cities', (done) => {
+    it('should return 10 cities', (done) => {
         supertest(server)
-            .get('/cities?lat=12.34&lng=56.78')
+            .get('/cities?lat=49.48121&lng=8.44641')
             .end((err: any, response: supertest.Response) => {
                 if (err) {
                     done(err);
                 }
                 else {
                     expect(response.status).to.equal(200);
-                    expect(response.body).to.deep.equal([{ id: 23423, name: 'Mannheim' }, { id: 23231, name: 'Hamburg' }]);
+                    expect(response.body).to.deep.equal([{ id: 2875376, name: "Ludwigshafen am Rhein" }, { id: 8521412, name: "Lindenhof" }, { id: 2866760, name: "Neckarstadt" }, { id: 2924380, name: "Friesenheim" }, { id: 2867610, name: "Mundenheim" }, { id: 2873891, name: "Mannheim" }, { id: 2816857, name: "Vogelstang" }, { id: 2866781, name: "Neckarau" }, { id: 8642860, name: "Gartenstadt" }, { id: 2847634, name: "Rheingönheim" }]);
                     done();
                 }
             });
@@ -68,7 +68,7 @@ describe('cities route controller', () => {
 
     it('should return city not found', (done) => {
         supertest(server)
-            .get('/cities?lat=99.99&lng=99.99')
+            .get('/cities?lat=0.42328&lng=8.46')
             .end((err: any, response: supertest.Response) => {
                 if (err) {
                     done(err);

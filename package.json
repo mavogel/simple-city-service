@@ -35,9 +35,13 @@
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.45",
+    "@types/request": "0.0.42",
+    "@types/request-promise": "^4.1.33",
     "@types/restify": "^2.0.33",
     "@types/sinon": "^1.16.31",
     "@types/supertest": "^1.1.31",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0",
     "restify": "^4.1.1"
   },
   "devDependencies": {
