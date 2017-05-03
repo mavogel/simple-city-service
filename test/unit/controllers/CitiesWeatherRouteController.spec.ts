@@ -2,7 +2,7 @@ import chai = require('chai');
 import { api as server } from '../../../app/app';
 import * as supertest from 'supertest';
 import { logger } from '../../../app/services/logger';
-import { weather } from '../../../app/services/weather';
+import { geoAndWeather } from '../../../app/services/geoAndWeather';
 import { mockedWeatherData } from '../../mocks';
 import { WeatherOutput } from '../../../app/models/weather';
 import * as sinon from 'sinon';
@@ -17,7 +17,7 @@ describe('cities route weather controller', () => {
 
     beforeEach(() => {
         logInfoStub = sandbox.stub(logger, 'info');
-        weatherStub = sandbox.stub(weather, 'getWeather');
+        weatherStub = sandbox.stub(geoAndWeather, 'getWeather');
     });
 
     afterEach(() => {

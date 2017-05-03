@@ -3,9 +3,9 @@ import { logger } from './logger';
 import { WeatherData } from '../models/weather';
 
 /**
- * A geolocator service
+ * A weather service
  */
-class Weather {
+class GeoAndWeather {
 
     private static BASE_URL: string = 'http://api.openweathermap.org/data/2.5/weather';
     private static API_KEY: string = '5ea56cfba9b6a6e5965d111fcd5b5416';
@@ -20,10 +20,10 @@ class Weather {
     public getWeather(cityId: string): Promise<WeatherData> {
         let qs: any = {
             id: 2873891,
-            appId: Weather.API_KEY
+            appId: GeoAndWeather.API_KEY
         };
         return new Promise((res, rej) => {
-            res(rq(Weather.BASE_URL, { qs: qs })
+            res(rq(GeoAndWeather.BASE_URL, { qs: qs })
                 .then((body) => {
                     logger.info(`response for cityId ${cityId}}`);
                     if (body.cod === '404') {
@@ -41,4 +41,4 @@ class Weather {
 
 }
 
-export let weather = new Weather();
+export let geoAndWeather = new GeoAndWeather();

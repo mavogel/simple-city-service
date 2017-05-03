@@ -1,6 +1,6 @@
 import * as restify from 'restify';
 import { logger } from '../services/logger';
-import { weather } from '../services/weather';
+import { geoAndWeather } from '../services/geoAndWeather';
 import { WeatherData } from '../models/weather';
 
 export default class CitiesWeatherRouteController {
@@ -8,7 +8,7 @@ export default class CitiesWeatherRouteController {
         let cityId: string = req.params.CITY_ID;
         if (cityId && cityId !== undefined) {
             logger.info(`accessing cities weather route for: ${cityId}`);
-            weather.getWeather(cityId)
+            geoAndWeather.getWeather(cityId)
                 .then((weatherData: WeatherData) => {
                     if (!weatherData.status) {
                         res.json(200, {
