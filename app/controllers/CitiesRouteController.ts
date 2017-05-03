@@ -23,16 +23,20 @@ export default class CitiesRouteController {
         else if (req.getQuery() && req.getQuery() !== '') {
             logger.info(`accessing cities route w query params: ${req.getQuery()}`);
             let queryParams: any = req.query;
-            geoAndWeather.getCities(queryParams.lat, queryParams.lng)
-                .then((geonames: GeonamesWithWeather) => {
-                    if (geonames.list && geonames.list.length !== 0) {
-                        let convertedGeonames: Array<{ id: number, name: string }> = [];
-                        geonames.list.forEach(gn => convertedGeonames.push({ id: gn.id, name: gn.name }));
-                        res.json(200, convertedGeonames);
-                    } else {
-                        res.json(404, { code: 'NotFoundError', message: 'not found' });
-                    }
-                });
+            if (!queryParams.lat || !queryParams.lng) {
+                res.json(400, { code: 'BadRequestError', message: 'lat/lng required' });
+            } else {
+                geoAndWeather.getCities(queryParams.lat, queryParams.lng)
+                    .then((geonames: GeonamesWithWeather) => {
+                        if (geonames.list && geonames.list.length !== 0) {
+                            let convertedGeonames: Array<{ id: number, name: string }> = [];
+                            geonames.list.forEach(gn => convertedGeonames.push({ id: gn.id, name: gn.name }));
+                            res.json(200, convertedGeonames);
+                        } else {
+                            res.json(404, { code: 'NotFoundError', message: 'not found' });
+                        }
+                    });
+            }
         }
         // == fallback 
         else {

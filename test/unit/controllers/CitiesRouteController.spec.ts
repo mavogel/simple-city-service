@@ -41,6 +41,22 @@ describe('cities route controller', () => {
             });
     });
 
+    it('should return a bad request because lng is missing', (done) => {
+        supertest(server)
+            .get('/cities?lat=49.48121')
+            .end((err: any, response: supertest.Response) => {
+                if (err) {
+                    done(err);
+                }
+                else {
+                    expect(response.status).to.equal(400);
+                    expect(response.body).to.deep.equal({ code: 'BadRequestError', message: 'lat/lng required' });
+                    expect(logInfoStub.callCount).to.equal(1);
+                    done();
+                }
+            });
+    });
+
     it('should return Mannheim for cityId', (done) => {
         geoGetCityStub.returns(new Promise((res, rej) => {
             res(mockedWeatherData);
@@ -97,6 +113,22 @@ describe('cities route controller', () => {
                     expect(response.body).to.deep.equal([{ id: 2873891, name: 'Mannheim' }, { id: 2875376, name: 'Ludwigshafen am Rhein' }]);
                     expect(logInfoStub.callCount).to.equal(1);
                     expect(geoGetCitiesStub.callCount).to.equal(1);
+                    done();
+                }
+            });
+    });
+
+    it('should return a bad request because lng is missing', (done) => {
+        supertest(server)
+            .get('/cities?lat=49.48121')
+            .end((err: any, response: supertest.Response) => {
+                if (err) {
+                    done(err);
+                }
+                else {
+                    expect(response.status).to.equal(400);
+                    expect(response.body).to.deep.equal({ code: 'BadRequestError', message: 'lat/lng required' });
+                    expect(logInfoStub.callCount).to.equal(1);
                     done();
                 }
             });

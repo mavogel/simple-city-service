@@ -21,6 +21,21 @@ describe('cities route controller', () => {
             });
     });
 
+    it('should return a bad request because lng is missing', (done) => {
+        supertest(server)
+            .get('/cities?lat=49.48121')
+            .end((err: any, response: supertest.Response) => {
+                if (err) {
+                    done(err);
+                }
+                else {
+                    expect(response.status).to.equal(400);
+                    expect(response.body).to.deep.equal({ code: 'BadRequestError', message: 'lat/lng required' });
+                    done();
+                }
+            });
+    });
+
     it('should return Mannheim for cityId', (done) => {
         supertest(server)
             .get('/cities/2873891')
@@ -81,4 +96,5 @@ describe('cities route controller', () => {
                 }
             });
     });
+
 });
