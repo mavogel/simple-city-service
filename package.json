@@ -12,6 +12,7 @@
     "cz": "git-cz",
     "precommit": "npm run lint",
     "prepush": "npm test && npm run e2e",
+    "precompile": "find ./app ./test -name *.js.* -exec rm -f {} \\;",
     "compile": "tsc",
     "prestart": "npm run compile",
     "start": "node app/app.js"
