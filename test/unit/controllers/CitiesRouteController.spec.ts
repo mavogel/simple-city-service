@@ -7,7 +7,7 @@ import { mockedGeoname, mockGeonames } from '../../mocks';
 import * as sinon from 'sinon';
 
 
-describe('cities route weather controller', () => {
+describe('cities route controller', () => {
 
     let expect = chai.expect;
     let sandbox = sinon.sandbox.create();

@@ -17,7 +17,7 @@ class Geo {
      * 
      * @param lat the latitude 
      * @param lng the longitue
-     * @return Array<Geoname> which can be empty
+     * @return Promise<Array<Geoname>> which can be empty
      */
     public getCities(lat: string, lng: number): Promise<Array<Geoname>> {
         let suffix: string = 'findNearbyPlaceNameJSON';
@@ -44,6 +44,7 @@ class Geo {
      * Retrieves a city with the given cityId
      * 
      * @param cityId the id of the city aka geonameId
+     * @return Promise<GeoNameFull>
      */
     public getCity(cityId: string): Promise<GeoNameFull> {
         let suffix: string = 'getJSON';
