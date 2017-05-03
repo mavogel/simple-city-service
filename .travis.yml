@@ -8,3 +8,11 @@ script:
   - npm run lint
   #- npm test
   #- npm run e2e
+
+after_success:
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+  - export SIMPLE_CITY_SERVICE=mavogel/simple-city-service
+  - docker build -t $SIMPLE_CITY_SERVICE:$COMMIT .
+  - docker tag $SIMPLE_CITY_SERVICE:$COMMIT $SIMPLE_CITY_SERVICE:$TAG
+  - docker push $SIMPLE_CITY_SERVICE
