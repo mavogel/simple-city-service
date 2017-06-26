@@ -12,7 +12,7 @@ cache:
     - node_modules
 script: 
   - npm run lint
-  #- npm test
+  - npm test
   #- npm run e2e
 
 after_success:
