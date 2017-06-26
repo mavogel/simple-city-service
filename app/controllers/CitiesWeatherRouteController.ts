@@ -2,7 +2,7 @@ import * as restify from 'restify';
 import * as moment from 'moment-timezone';
 import { logger } from '../services/logger';
 import { geoAndWeather } from '../services/geoAndWeather';
-import { WeatherData, WeatherOutput } from '../models/weather';
+import { WeatherData } from '../models/weather';
 
 /**
  * Controller for the '/cities/:CITY_ID/weather' route
