@@ -32,8 +32,8 @@ describe('cities route weather controller', () => {
         let expectedWeatherOutput: WeatherOutput = {
             type: 'Rain',
             type_description: 'light rain',
-            sunrise: '2016-08-23T08:00:00.000Z',
-            sunset: '2016-08-23T22:00:00.000Z',
+            sunrise: '2017-05-03T03:59:32.000Z',
+            sunset: '2017-05-03T18:47:23.000Z',
             temp: 12.49,
             temp_min: 12.00,
             temp_max: 13.00,

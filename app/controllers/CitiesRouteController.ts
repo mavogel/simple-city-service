@@ -3,7 +3,18 @@ import { logger } from '../services/logger';
 import { geoAndWeather } from '../services/geoAndWeather';
 import { WeatherData, GeonamesWithWeather } from '../models/weather';
 
+/**
+ * Controller for the '/cities/:CITY_ID' route
+ */
 export default class CitiesRouteController {
+
+    /**
+     * Handling all 'GET' requests
+     * 
+     * @param req the request
+     * @param res the reponse
+     * @param next 
+     */
     public get(req: restify.Request, res: restify.Response, next: restify.Next) {
         let cityId: string = req.params.CITY_ID;
         // == path param
