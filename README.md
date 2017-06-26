@@ -28,7 +28,10 @@ I'd like to learn `node` coming from the `Java` world and having experience with
 The following routes should be provided by the service. All the routes should deliver the response as json and indicate the response type with the proper content type.
 
 ### `GET /cities?lat={latitude}&lng={longitude}`
-List the available cities around the specified latitude/longitude within a radius of 10 kilometers Example: http://localhost:8080/cities?lat=49.48&lng=8.46
+List the available cities around the specified latitude/longitude within a radius of 10 kilometers Example: http://localhost:3000/cities?lat=49.48&lng=8.46 or
+```bash
+curl -v 'http://localhost:3000/cities?lat=49.48&lng=8.46'
+``` 
 
 Returns:
 
